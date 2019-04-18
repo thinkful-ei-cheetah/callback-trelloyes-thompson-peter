@@ -1,6 +1,7 @@
 import React from 'react';
 import Card from './Card'
 import './List.css';
+import AddItemForm from './AddItemForm'
 
 export default function List(props) {
   return (
@@ -16,12 +17,16 @@ export default function List(props) {
             content={card.content}
           />
         )}
-        <button
+
+        <section> 
+            <AddItemForm onAddItem={props.addRandom} /> 
+        </section>
+        {/* <button
           type='button'
           className='List-add-button'
         >
           + Add Random Card
-        </button>
+        </button> */}
       </div>
     </section>
   )
