@@ -4,7 +4,9 @@ class AddItemForm extends Component {
     onAddRandom = (e) => {
         e.preventDefault()
         // e.target['inputName'] references `<input name='inputName' />`
-        this.props.onAddItem()
+     
+        this.props.onAddItem();
+
       }
       render() {
     
@@ -18,6 +20,7 @@ class AddItemForm extends Component {
           onClick={console.log('I was clicked')}
         >
           + Add Random Card
+          {this.props.listID}
         </button>
 
 

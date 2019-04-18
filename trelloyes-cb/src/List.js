@@ -19,7 +19,7 @@ export default function List(props) {
         )}
 
         <section> 
-            <AddItemForm onAddItem={props.addRandom} /> 
+            <AddItemForm onAddItem= {() => props.addRandom(props.id)} listID={props.id}/> 
         </section>
         {/* <button
           type='button'

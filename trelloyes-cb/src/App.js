@@ -28,15 +28,22 @@ class App extends Component {
     //     <AddItemForm onAddItem={this.handleAddItem} /> 
     //   </section> ) }
 
-    handleRandomItem = (itemName) => { 
-      console.log('handle add item', { newRandomCard }) 
-
+    handleRandomItem = (listID) => { 
       const newRandomCard = () => { 
         const id = Math.random().toString(36).substring(2, 4) + Math.random().toString(36).substring(2, 4); 
-
+        
         return { id, title: `Random Card ${id}`, content: 'lorem ipsum', } 
       }
 
+
+      console.log('handle add item', newRandomCard())
+      console.log(listID)
+      
+
+
+      // setState = {
+
+      // }
     }
 
 
@@ -54,10 +61,9 @@ class App extends Component {
               header={list.header}
               cards={list.cardIds.map(id => store.allCards[id])}
               addRandom={this.handleRandomItem}
+              id={list.id}
             />
           ))}
-
-      
         </div>
       </main>
     );
