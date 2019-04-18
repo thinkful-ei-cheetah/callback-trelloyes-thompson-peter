@@ -52,10 +52,10 @@ class App extends Component {
       })
 
 
-      console.log('handle add item', newRandomCard())
+      console.log('handle add item', randomCard)
       console.log(listID)
-      console.log();
-      
+      console.log(this.state.store.lists[0].cardIds)
+      console.log(this.state.allCards)
 
     }
 
