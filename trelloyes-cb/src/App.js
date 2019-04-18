@@ -9,20 +9,53 @@ class App extends Component {
             allCards : this.props.store.allCards}
   }
     
-  // static defaultProps = {
-  //   store: {
-  //     lists: [],
-  //     allCards: {},
-  //   }
-  // };
 
-  handleDeleteItem = (item) => {
-     const newItems = this.state.store.lists.filter(itm => itm !== item) 
-    this.setState({ lists: newItems }) 
-    } 
+  handleDeleteItem = (listId,itemId) => {
+    let allLists= this.state.store.lists;
+    let allCard= this.state.store.allCards;
+    const newLists = allLists.map(list => 
+      { list.cardIds = 
+        list.cardIds.filter(id => id !== itemId); 
+        return list; 
+      });
+    
+    console.log("newlists:",newLists)
+    this.setState({ 
+      store: {
+        lists: newLists,
+        allCards: {
+          ...allCard
+        }
+      }
+    })
 
+    console.log('post-state:', listId, itemId) 
 
-    handleAddItem = (itemName) => { console.log('handle add item', { itemName }) }
+  } 
+
+  handleAddItem = (itemName) => {
+      const nuCard = {} ;
+      const newLists = this.state.store.lists.map(list => {
+        if (list.id === itemName) {
+          list.cardIds.push(nuCard.id)
+        }
+        return list
+      })
+
+      this.setState({
+        store: {
+          lists: newLists,
+          allCards: {
+            ...this.state.store.allCards,
+            [nuCard.id]: nuCard
+          }
+        }
+      })
+  
+      console.log('handle add item', { itemName }) 
+  
+  }
+
 
     handleRandomItem = (listID) => { 
 
@@ -51,12 +84,6 @@ class App extends Component {
         }
       })
 
-
-      console.log('handle add item', randomCard)
-      console.log(listID)
-      console.log(this.state.store.lists[0].cardIds)
-      console.log(this.state.allCards)
-
     }
 
 
@@ -74,6 +101,7 @@ class App extends Component {
               header={list.header}
               cards={list.cardIds.map(id => store.allCards[id])}
               addRandom={this.handleRandomItem}
+              deleteCard={this.handleDeleteItem}
               id={list.id}
             />
           ))}

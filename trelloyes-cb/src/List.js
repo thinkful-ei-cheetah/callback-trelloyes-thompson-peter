@@ -12,21 +12,19 @@ export default function List(props) {
       <div className='List-cards'>
         {props.cards.map((card) =>
           <Card
+            listId={props.id}
             key={card.id}
+            id={card.id}
             title={card.title}
             content={card.content}
+            deleteCard={props.deleteCard}
           />
         )}
 
         <section> 
-            <AddItemForm onAddItem= {() => props.addRandom(props.id)} listID={props.id}/> 
+            <AddItemForm onAddItem= {() => props.addRandom(props.id)} /> 
         </section>
-        {/* <button
-          type='button'
-          className='List-add-button'
-        >
-          + Add Random Card
-        </button> */}
+
       </div>
     </section>
   )

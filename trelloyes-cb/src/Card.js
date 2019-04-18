@@ -6,6 +6,11 @@ export default function Card(props) {
     <div className='Card'>
       <button
         type='button'
+        onClick= {(e) => {
+          e.preventDefault()
+          console.log('clicked:', props.listId)
+          props.deleteCard(props.listId ,props.id) }} 
+        
       >
         delete
       </button>
